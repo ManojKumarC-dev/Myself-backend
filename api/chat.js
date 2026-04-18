@@ -35,8 +35,9 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     res.status(200).json({
-      reply: data.choices?.[0]?.message?.content || JSON.stringify(data)
-    });
+  reply: data.choices?.[0]?.message?.content || "No reply",
+  model: data.model
+});
 
   } catch (error) {
     res.status(500).json({ error: error.message });
