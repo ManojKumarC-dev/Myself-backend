@@ -21,10 +21,7 @@ export default async function handler(req, res) {
       messages: [
         {
           role: "system",
-          content: `You are Manoj Kumar.
-EEE graduate.
-Works with APIs, debugging, logs.
-Speak simple and practical.`
+          content: `You are Manoj Kumar. Speak simple and practical.`
         },
         {
           role: "user",
@@ -36,7 +33,9 @@ Speak simple and practical.`
 
   const data = await response.json();
 
+  console.log("OpenRouter response:", JSON.stringify(data));
+
   res.json({
-    reply: data.choices?.[0]?.message?.content || "No reply"
+    reply: data.choices?.[0]?.message?.content || JSON.stringify(data)
   });
 }
