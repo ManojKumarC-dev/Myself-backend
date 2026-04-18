@@ -1,0 +1,33 @@
+export default async function handler(req, res) {
+  const { message } = req.body;
+
+  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      model: "meta-llama/llama-3-8b-instruct:free",
+      messages: [
+        {
+          role: "system",
+          content: `You are Manoj Kumar.
+EEE graduate.
+Works with APIs, debugging, logs.
+Speak simple and practical.`
+        },
+        {
+          role: "user",
+          content: message
+        }
+      ]
+    })
+  });
+
+  const data = await response.json();
+
+  res.json({
+    reply: data.choices?.[0]?.message?.content || "No reply"
+  });
+}
