@@ -18,7 +18,7 @@ export default async function handler(req, res) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        model: "z-ai/glm-4.5-air:free",
+        model: "openrouter/auto",
         messages: [
           {
             role: "system",
