@@ -17,11 +17,11 @@ export default async function handler(req, res) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify({
-      model: "mistralai/mistral-7b-instruct:free"",
+      model: "mistralai/mistral-7b-instruct:free",
       messages: [
         {
           role: "system",
-          content: `You are Manoj Kumar. Speak simple and practical.`
+          content: "You are Manoj. Speak simple and practical."
         },
         {
           role: "user",
@@ -33,9 +33,7 @@ export default async function handler(req, res) {
 
   const data = await response.json();
 
-  console.log("OpenRouter response:", JSON.stringify(data));
-
-  res.json({
+  res.status(200).json({
     reply: data.choices?.[0]?.message?.content || JSON.stringify(data)
   });
 }
