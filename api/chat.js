@@ -8,32 +8,37 @@ export default async function handler(req, res) {
     return res.status(200).end();
   }
 
-  const { message } = req.body;
+  try {
+    const { message } = req.body;
 
-  const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-    method: "POST",
-    headers: {
-      "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      model: "openai/gpt-oss-20b:free"",
-      messages: [
-        {
-          role: "system",
-          content: "You are Manoj. Speak simple and practical."
-        },
-        {
-          role: "user",
-          content: message
-        }
-      ]
-    })
-  });
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        model: "openai/gpt-oss-20b:free",
+        messages: [
+          {
+            role: "system",
+            content: "You are Manoj. Speak simple and practical."
+          },
+          {
+            role: "user",
+            content: message
+          }
+        ]
+      })
+    });
 
-  const data = await response.json();
+    const data = await response.json();
 
-  res.status(200).json({
-    reply: data.choices?.[0]?.message?.content || JSON.stringify(data)
-  });
+    res.status(200).json({
+      reply: data.choices?.[0]?.message?.content || JSON.stringify(data)
+    });
+
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 }
