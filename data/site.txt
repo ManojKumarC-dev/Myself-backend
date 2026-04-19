@@ -1,0 +1,83 @@
+Name: Manoj Kumar C
+
+Title: Embedded Systems and Software Engineer
+
+Tagline:
+Make it Simple, But Significant.
+
+Summary:
+Engineering graduate with hands-on experience across firmware, operating systems, Android application development, and collaborative software delivery in production environments.
+
+Focus:
+Firmware, Android, and OS-level engineering
+
+Tools:
+C, C++, Python, Linux, Git
+
+Education:
+B.E. Electrical and Electronics Engineering (EEE)
+Sri Sairam Engineering College
+CGPA: 9.09 / 10
+Graduation Year: 2025
+Higher Secondary: 93.02%
+Secondary: 88.4%
+
+Projects:
+
+1. Wireless Servosystem for AC and DC Machines
+Designed an embedded servo system with capacitive touch support for wireless control of AC and DC machines. Includes real-time machine analysis for operator communication.
+
+2. Intel BIOS Porting (Industry Project)
+Worked on open-source Intel BIOS porting to device-specific firmware during internship. Gained experience in BIOS configuration and low-level customization.
+
+3. Research and Publications (IEEE)
+Published research on wireless servo systems and co-authored work on cascaded neural network control for electric vehicle energy management.
+
+Work Experience:
+
+1. Senior Software Engineer - Android Development
+HCL Technologies (Xerox Project)
+Oct 2025 - Present
+- Working on bug fixes and feature implementation for Xerox kiosk workflows
+- Using Git workflows: branching, merging, pull requests, integration
+
+2. Senior Software Engineer - OS Team
+HCL Technologies (Xerox Project)
+Aug 2025 - Oct 2025
+- Handled defect consulting for software releases
+- Worked in OS-level team with structured Git workflows
+
+Internships:
+
+- Firmware and Embedded Systems Intern
+HCL Technologies
+
+- National Small Scale Industries Technical Service Centre
+
+- IndFurr SuperHeat Furnaces, Ambattur Industrial Estate
+
+Experience includes:
+BIOS porting, firmware customization, embedded systems, power electronics, and IoT-based industrial applications
+
+About:
+Specializes in embedded systems and firmware engineering with experience in BIOS customization, Android development, microcontroller programming, and research-driven engineering.
+
+Areas of Interest:
+Operating systems, firmware engineering, embedded programming, circuit simulation, collaborative development, machine learning for electrical systems, space exploration
+
+Contact:
+
+Email:
+cmanoj15122003@gmail.com
+
+GitHub:
+https://github.com/ManojKumarC-dev
+
+LinkedIn:
+https://linkedin.com/in/manoj-kumar-c-b78a47224
+
+Instagram:
+@think_unique_03
+
+ORCID:
+0009-0000-3349-6725
