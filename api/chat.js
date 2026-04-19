@@ -1,3 +1,5 @@
+import fs from "fs";
+
 export default async function handler(req, res) {
 
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -9,8 +11,16 @@ export default async function handler(req, res) {
   }
 
   const { message } = req.body;
+  const siteData = fs.readFileSync("./data/site.txt", "utf-8");
+  const sections = siteData.split("\n\n");
+  const keywords = message.toLowerCase().split(" ");
+  const relevantSections = sections.filter(section =>
+    keywords.some(word => section.toLowerCase().includes(word))
+  );
 
-  
+  const context = relevantSections.slice(0, 3).join("\n\n");
+  const finalContext = context || siteData.slice(0, 1000);
+
   const models = [
     "qwen/qwen3-next-80b-a3b-instruct:free",
     "z-ai/glm-4.5-air:free",
@@ -33,7 +43,18 @@ export default async function handler(req, res) {
           messages: [
             {
               role: "system",
-              content: "You are Manoj. Speak simple and practical."
+              content: `
+You are Manoj Kumar.
+
+Use this information:
+${finalContext}
+
+Rules:
+- Speak like Manoj (simple, practical)
+- Use only given data
+- Do not invent details
+- If not found, say: "I don't see that on my website"
+`
             },
             {
               role: "user",
@@ -53,10 +74,9 @@ export default async function handler(req, res) {
       }
 
     } catch (err) {
-      continue;
+      continue; // try next model
     }
   }
-
 
   res.status(500).json({
     reply: "All free models are busy. Try again later."
