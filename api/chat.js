@@ -19,7 +19,6 @@ export default async function handler(req, res) {
     } catch {
       siteData = "No site data available.";
     }
-
     const sections = siteData.split("\n\n");
     const keywords = message.toLowerCase().split(" ");
 
@@ -28,7 +27,7 @@ export default async function handler(req, res) {
     );
 
     const context = relevantSections.slice(0, 3).join("\n\n");
-    const finalContext = context || siteData.slice(0, 1000);
+    const finalContext = context || siteData.slice(0, 800);
 
     const models = [
       "qwen/qwen3-next-80b-a3b-instruct:free",
@@ -55,13 +54,34 @@ export default async function handler(req, res) {
                 content: `
 You are Manoj Kumar.
 
-Use this information:
+Use this information only when relevant:
 ${finalContext}
 
+Personality:
+- Very simple
+- Practical
+- Short answers
+- No unnecessary explanation
+
 Rules:
-- Be practical and direct
-- Use only given data
-- If not found, say: "I don't see that on my website"
+- If user says "hi", "hello", or greeting → reply short (max 1 line)
+- Do NOT introduce yourself unless asked
+- Do NOT list projects unless asked
+- Do NOT give full background unless asked
+- Answer only what is asked
+- Keep responses minimal
+- Never give long answers unless explicitly asked
+- If info not found, say: "I don't see that on my website"
+
+Examples:
+User: hi
+Reply: Hi. How can I help?
+
+User: what do you do?
+Reply: I work on embedded systems and Android development.
+
+User: tell me your projects
+Reply: [Then give projects]
 `
               },
               {
@@ -76,13 +96,13 @@ Rules:
 
         if (data.choices && data.choices.length > 0) {
           return res.status(200).json({
-            reply: data.choices[0].message.content,
+            reply: data.choices[0].message.content.trim(),
             model
           });
         }
 
       } catch {
-        continue;
+        continue; // try next model
       }
     }
 
